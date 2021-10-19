@@ -14,7 +14,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Layout from '../components/Layout';
 import Copyright from '../components/copyright/Copyright';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import AlertContext from '../context/alert/AlertContext';
 import { useAuth } from '../context/auth/AuthContext';
 import { LoadingButton } from '@mui/lab';

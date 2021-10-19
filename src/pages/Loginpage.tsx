@@ -15,18 +15,26 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { useContext, useRef, useState, useEffect } from 'react';
 import { useAuth } from '../context/auth/AuthContext';
 import AlertContext from '../context/alert/AlertContext';
-import { useHistory } from 'react-router';
+import { useLocation } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import GoogleButton from 'react-google-button';
 import useMounted from '../hooks/useMounted/useMounted';
+
+export interface LocationStateInterface {
+  from: {
+    pathname: string;
+  };
+}
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
   const alertContext = useContext(AlertContext);
   const { setAlert } = alertContext;
   const { login, signInWithGoogle } = useAuth();
+
+  const location = useLocation<LocationStateInterface>();
 
   //ref used to check if current component is still mounted for setIsSubmitting(false) in onSubmit fn call to avoid setting state on an unmounted component
   const mounted = useMounted();
@@ -46,9 +54,8 @@ export default function LoginPage() {
     } else {
       setIsSubmitting(true);
       login(email, password)
-        .then((response) => history.push('./profile'))
+        .then((response) => history.push(location.state?.from ?? './profile'))
         .catch((error) => {
-          console.log(error.message);
           setAlert(error.message, 'error');
         })
         .finally(() => mounted.current && setIsSubmitting(false));

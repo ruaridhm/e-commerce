@@ -11,16 +11,25 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Layout from '../components/Layout';
 import Copyright from '../components/copyright/Copyright';
+import { useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useAuth } from '../context/auth/AuthContext';
+import AlertContext from '../context/alert/AlertContext';
 
 export default function ForgotPasswordPage() {
+  const history = useHistory();
+  const [email, setEmail] = useState('');
+  const { forgotPassword } = useAuth();
+  const alertContext = useContext(AlertContext);
+  const { setAlert } = alertContext;
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    forgotPassword(email)
+      .then(() => {
+        setAlert('Email sent!', 'success');
+      })
+      .catch((error) => setAlert(error.message, 'error'));
   };
 
   return (
@@ -56,6 +65,8 @@ export default function ForgotPasswordPage() {
               name='email'
               autoComplete='email'
               autoFocus
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <Button
               type='submit'

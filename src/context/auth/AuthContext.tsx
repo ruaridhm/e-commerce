@@ -7,7 +7,8 @@ import {
   onAuthStateChanged,
   User,
   signOut,
-  Auth,
+  sendPasswordResetEmail,
+  confirmPasswordReset,
 } from '@firebase/auth';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
@@ -17,6 +18,8 @@ interface AuthContextInterface {
   login: any;
   logout: any;
   signInWithGoogle: any;
+  forgotPassword: any;
+  resetPassword: any;
 }
 
 const AuthContext = createContext<AuthContextInterface>({
@@ -25,6 +28,8 @@ const AuthContext = createContext<AuthContextInterface>({
   login: () => Promise,
   logout: () => Promise,
   signInWithGoogle: () => Promise,
+  forgotPassword: () => Promise,
+  resetPassword: () => Promise,
 });
 
 interface useAuthInterface {
@@ -33,6 +38,8 @@ interface useAuthInterface {
   login: (email: string, password: string) => Promise<UserCredential>;
   logout: () => Promise<void>;
   signInWithGoogle: () => Promise<UserCredential>;
+  forgotPassword: (email: string) => Promise<void>;
+  resetPassword: (oobCode: string, newPassword: string) => Promise<void>;
 }
 
 export const useAuth = (): useAuthInterface => useContext(AuthContext);
@@ -72,8 +79,25 @@ const AuthContextProvider = ({ children }: AuthContextProviderInterface) => {
   const logout = () => {
     return signOut(auth);
   };
+  const forgotPassword = (email: string) => {
+    return sendPasswordResetEmail(auth, email, {
+      url: 'http://localhost:3000/login',
+    });
+  };
 
-  const value = { currentUser, register, login, logout, signInWithGoogle };
+  const resetPassword = (oobCode: string, newPassword: string) => {
+    return confirmPasswordReset(auth, oobCode, newPassword);
+  };
+
+  const value = {
+    currentUser,
+    register,
+    login,
+    logout,
+    signInWithGoogle,
+    forgotPassword,
+    resetPassword,
+  };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 

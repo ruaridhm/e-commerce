@@ -1,5 +1,5 @@
 import { useHistory, useLocation } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,18 +13,29 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Layout from '../components/Layout';
 import Copyright from '../components/copyright/Copyright';
+import { useAuth } from '../context/auth/AuthContext';
+import useQuery from '../hooks/useQuery/useQuery';
+import AlertContext from '../context/alert/AlertContext';
 
 const theme = createTheme();
 
 export default function ResetPasswordPage() {
+  const alertContext = useContext(AlertContext);
+  const history = useHistory();
+  const { setAlert } = alertContext;
+  const { resetPassword } = useAuth();
+  const query = useQuery();
+  const [newPassword, setNewPassword] = useState('');
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const oobCode = query.get('oobCode');
+    resetPassword(oobCode!, newPassword)
+      .then(() => {
+        setAlert('Your password has been changed', 'success');
+        history.push('/login');
+      })
+      .catch((error) => setAlert(error.message, 'error'));
   };
 
   return (
@@ -44,7 +55,7 @@ export default function ResetPasswordPage() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component='h1' variant='h5'>
-              Forgot Password
+              Reset Password
             </Typography>
             <Box
               component='form'
@@ -56,22 +67,14 @@ export default function ResetPasswordPage() {
                 margin='normal'
                 required
                 fullWidth
-                name='password'
-                label='Password'
-                type='password'
-                id='password'
-                autoComplete='current-password'
+                name='newPassword'
+                label='New Password'
+                type='newPassword'
+                id='newPassword'
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
               />
-              <TextField
-                margin='normal'
-                required
-                fullWidth
-                name='confirmPassword'
-                label='Confirm Password'
-                type='confirmPassword'
-                id='confirmPassword'
-                autoComplete='current-confirmPassword'
-              />
+
               <Button
                 type='submit'
                 fullWidth
@@ -80,13 +83,6 @@ export default function ResetPasswordPage() {
               >
                 Submit
               </Button>
-              <Grid container>
-                <Grid item>
-                  <Link href='#' variant='body2'>
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
             </Box>
           </Box>
           <Copyright sx={{ mt: 8, mb: 4 }} />
