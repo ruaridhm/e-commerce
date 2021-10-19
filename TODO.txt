@@ -1,0 +1,6 @@
+AuthContext.tsx line 7 
+register, login type needs to not be any
+
+Alerts timeouts and realerting functionallity buggy (probably because of Snackbars open prop)
+
+auth errors rewritten to give custom error messages

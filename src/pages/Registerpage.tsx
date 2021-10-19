@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useRef, useEffect } from 'react';
 import Alert from '@mui/material/Alert';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -18,6 +18,7 @@ import { useHistory } from 'react-router';
 import AlertContext from '../context/alert/AlertContext';
 import { useAuth } from '../context/auth/AuthContext';
 import { LoadingButton } from '@mui/lab';
+import useMounted from '../hooks/useMounted/useMounted';
 
 export default function RegisterPage() {
   const alertContext = useContext(AlertContext);
@@ -29,6 +30,8 @@ export default function RegisterPage() {
   const [showAlert, setShowAlert] = useState(false);
 
   const { register } = useAuth();
+
+  const mounted = useMounted();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -48,7 +51,7 @@ export default function RegisterPage() {
           console.log(error.message);
           setAlert(error.message, 'error');
         })
-        .finally(() => setIsSubmitting(false));
+        .finally(() => mounted.current && setIsSubmitting(false));
     }
   };
 

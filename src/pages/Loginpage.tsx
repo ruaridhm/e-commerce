@@ -12,10 +12,12 @@ import Container from '@mui/material/Container';
 import Layout from '../components/Layout';
 import Copyright from '../components/copyright/Copyright';
 import LoadingButton from '@mui/lab/LoadingButton';
-import { useContext, useState } from 'react';
+import { useContext, useRef, useState, useEffect } from 'react';
 import { useAuth } from '../context/auth/AuthContext';
 import AlertContext from '../context/alert/AlertContext';
 import { useHistory } from 'react-router';
+import GoogleButton from 'react-google-button';
+import useMounted from '../hooks/useMounted/useMounted';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -24,7 +26,10 @@ export default function LoginPage() {
   const [showAlert, setShowAlert] = useState(false);
   const alertContext = useContext(AlertContext);
   const { setAlert } = alertContext;
-  const { login } = useAuth();
+  const { login, signInWithGoogle } = useAuth();
+
+  //ref used to check if current component is still mounted for setIsSubmitting(false) in onSubmit fn call to avoid setting state on an unmounted component
+  const mounted = useMounted();
 
   const history = useHistory();
 
@@ -46,7 +51,7 @@ export default function LoginPage() {
           console.log(error.message);
           setAlert(error.message, 'error');
         })
-        .finally(() => setIsSubmitting(false));
+        .finally(() => mounted.current && setIsSubmitting(false));
     }
   };
 
@@ -111,6 +116,13 @@ export default function LoginPage() {
             >
               Sign In
             </LoadingButton>
+            <GoogleButton
+              onClick={() => {
+                signInWithGoogle()
+                  .then((user) => console.log(user))
+                  .catch((error) => console.log(error));
+              }}
+            />
             <Grid container>
               <Grid item xs>
                 <Link href='#' variant='body2'>

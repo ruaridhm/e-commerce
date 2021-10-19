@@ -9,12 +9,14 @@ import {
   signOut,
   Auth,
 } from '@firebase/auth';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 interface AuthContextInterface {
   currentUser: null | User;
   register: any; //(email: string, password: string) => Promise<UserCredential>;
   login: any;
   logout: any;
+  signInWithGoogle: any;
 }
 
 const AuthContext = createContext<AuthContextInterface>({
@@ -22,6 +24,7 @@ const AuthContext = createContext<AuthContextInterface>({
   register: () => Promise,
   login: () => Promise,
   logout: () => Promise,
+  signInWithGoogle: () => Promise,
 });
 
 interface useAuthInterface {
@@ -29,6 +32,7 @@ interface useAuthInterface {
   register: (email: string, password: string) => Promise<UserCredential>;
   login: (email: string, password: string) => Promise<UserCredential>;
   logout: () => Promise<void>;
+  signInWithGoogle: () => Promise<UserCredential>;
 }
 
 export const useAuth = (): useAuthInterface => useContext(AuthContext);
@@ -60,11 +64,16 @@ const AuthContextProvider = ({ children }: AuthContextProviderInterface) => {
   const login = (email: string, password: string) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
+
+  const signInWithGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    return signInWithPopup(auth, provider);
+  };
   const logout = () => {
     return signOut(auth);
   };
 
-  const value = { currentUser, register, login, logout };
+  const value = { currentUser, register, login, logout, signInWithGoogle };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
