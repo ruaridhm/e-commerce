@@ -9,12 +9,13 @@ import {
   signOut,
   sendPasswordResetEmail,
   confirmPasswordReset,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from '@firebase/auth';
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 interface AuthContextInterface {
   currentUser: null | User;
-  register: any; //(email: string, password: string) => Promise<UserCredential>;
+  register: any; //TODO (email: string, password: string) => Promise<UserCredential>;
   login: any;
   logout: any;
   signInWithGoogle: any;

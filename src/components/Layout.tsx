@@ -1,6 +1,8 @@
-import Container from '@mui/material/Container';
-import Navbar from './navbar/Navbar';
+//Mui
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Container from '@mui/material/Container';
+//Components
+import Navbar from './navbar/Navbar';
 import Alerts from './alerts/Alerts';
 
 interface LayoutInterface {

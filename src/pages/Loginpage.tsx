@@ -1,3 +1,7 @@
+import { useContext, useState } from 'react';
+import { useLocation } from 'react-router';
+import { useHistory } from 'react-router-dom';
+//MUI
 import Avatar from '@mui/material/Avatar';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -9,15 +13,16 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import LoadingButton from '@mui/lab/LoadingButton';
+//Components
 import Layout from '../components/Layout';
 import Copyright from '../components/copyright/Copyright';
-import LoadingButton from '@mui/lab/LoadingButton';
-import { useContext, useRef, useState, useEffect } from 'react';
+//Outside Components
+import GoogleButton from 'react-google-button';
+//Context
 import { useAuth } from '../context/auth/AuthContext';
 import AlertContext from '../context/alert/AlertContext';
-import { useLocation } from 'react-router';
-import { useHistory } from 'react-router-dom';
-import GoogleButton from 'react-google-button';
+//Hooks
 import useMounted from '../hooks/useMounted/useMounted';
 
 export interface LocationStateInterface {
@@ -26,7 +31,7 @@ export interface LocationStateInterface {
   };
 }
 
-export default function LoginPage() {
+const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -148,4 +153,6 @@ export default function LoginPage() {
       </Container>
     </Layout>
   );
-}
+};
+
+export default LoginPage;

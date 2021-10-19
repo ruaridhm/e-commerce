@@ -1,14 +1,16 @@
-import * as React from 'react';
+//MUI
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+//Components
 import Navlink from './navlink/Navlink';
+//Auth
 import { useAuth } from '../../context/auth/AuthContext';
 
-function Navbar() {
+const Navbar = () => {
   const { logout, currentUser } = useAuth();
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -37,21 +39,14 @@ function Navbar() {
               name='Logout'
               onClick={async (e: { preventDefault: () => void }) => {
                 e.preventDefault();
-                // handle logout
                 logout();
               }}
             />
           )}
-          {/* <IconButton
-          variant='outline'
-          icon={useColorModeValue(<FaSun />, <FaMoon />)}
-          onClick={toggleColorMode}
-          aria-label='toggle-dark-mode'
-        /> */}
         </Toolbar>
       </AppBar>
     </Box>
   );
-}
+};
 
 export default Navbar;

@@ -5,7 +5,9 @@ import {
   Switch,
   useLocation,
 } from 'react-router-dom';
+//Context
 import { useAuth } from '../../context/auth/AuthContext';
+//Pages
 import ForgotPasswordPage from '../../pages/ForgotPasswordPage';
 import Homepage from '../../pages/Homepage';
 import Loginpage, { LocationStateInterface } from '../../pages/Loginpage';
@@ -15,7 +17,7 @@ import ProtectedPage from '../../pages/ProtectedPage';
 import Registerpage from '../../pages/Registerpage';
 import ResetPasswordPage from '../../pages/ResetPasswordPage';
 
-export default function AppRouter() {
+const AppRouter = () => {
   return (
     <>
       <Router>
@@ -44,7 +46,7 @@ export default function AppRouter() {
       </Router>
     </>
   );
-}
+};
 
 interface ProtectedRouteInterface {
   path: string;
@@ -76,3 +78,4 @@ const ProtectedRoute = (props: ProtectedRouteInterface) => {
     <Redirect to={{ pathname: './login', state: { from: path } }} />
   );
 };
+export default AppRouter;

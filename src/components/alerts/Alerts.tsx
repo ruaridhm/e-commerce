@@ -1,6 +1,7 @@
 import { forwardRef, useContext, useState } from 'react';
+//Context
 import AlertContext from '../../context/alert/AlertContext';
-import Stack from '@mui/material/Stack';
+//MUI
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 

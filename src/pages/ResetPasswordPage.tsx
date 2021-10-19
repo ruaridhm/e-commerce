@@ -1,25 +1,27 @@
-import { useHistory, useLocation } from 'react-router-dom';
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+//MUI
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+//Components
 import Layout from '../components/Layout';
 import Copyright from '../components/copyright/Copyright';
+//Context
 import { useAuth } from '../context/auth/AuthContext';
-import useQuery from '../hooks/useQuery/useQuery';
 import AlertContext from '../context/alert/AlertContext';
+//Hooks
+import useQuery from '../hooks/useQuery/useQuery';
 
 const theme = createTheme();
 
-export default function ResetPasswordPage() {
+const ResetPasswordPage = () => {
   const alertContext = useContext(AlertContext);
   const history = useHistory();
   const { setAlert } = alertContext;
@@ -90,4 +92,5 @@ export default function ResetPasswordPage() {
       </ThemeProvider>
     </Layout>
   );
-}
+};
+export default ResetPasswordPage;

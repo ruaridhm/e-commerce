@@ -1,4 +1,5 @@
-import * as React from 'react';
+import { useContext, useState } from 'react';
+//MUI
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -9,15 +10,14 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+//Components
 import Layout from '../components/Layout';
 import Copyright from '../components/copyright/Copyright';
-import { useContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+//Context
 import { useAuth } from '../context/auth/AuthContext';
 import AlertContext from '../context/alert/AlertContext';
 
-export default function ForgotPasswordPage() {
-  const history = useHistory();
+const ForgotPasswordPage = () => {
   const [email, setEmail] = useState('');
   const { forgotPassword } = useAuth();
   const alertContext = useContext(AlertContext);
@@ -89,4 +89,6 @@ export default function ForgotPasswordPage() {
       </Container>
     </Layout>
   );
-}
+};
+
+export default ForgotPasswordPage;

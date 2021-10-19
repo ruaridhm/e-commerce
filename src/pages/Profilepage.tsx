@@ -1,8 +1,11 @@
-import Layout from '../components/Layout';
+//MUI
 import { Typography } from '@mui/material';
+//Components
+import Layout from '../components/Layout';
+//Context
 import { useAuth } from '../context/auth/AuthContext';
 
-export default function Profilepage() {
+const Profilepage = () => {
   const { currentUser } = useAuth();
 
   return (
@@ -13,4 +16,6 @@ export default function Profilepage() {
       </Typography>
     </Layout>
   );
-}
+};
+
+export default Profilepage;

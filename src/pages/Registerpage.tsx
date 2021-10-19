@@ -1,7 +1,6 @@
-import { useContext, useState, useRef, useEffect } from 'react';
-import Alert from '@mui/material/Alert';
+import { useContext, useState } from 'react';
+//MUI
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -12,22 +11,22 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { LoadingButton } from '@mui/lab';
+//Components
 import Layout from '../components/Layout';
 import Copyright from '../components/copyright/Copyright';
-import { useHistory } from 'react-router-dom';
+//Context
 import AlertContext from '../context/alert/AlertContext';
 import { useAuth } from '../context/auth/AuthContext';
-import { LoadingButton } from '@mui/lab';
+//Hooks
 import useMounted from '../hooks/useMounted/useMounted';
 
-export default function RegisterPage() {
+const RegisterPage = () => {
   const alertContext = useContext(AlertContext);
   const { setAlert } = alertContext;
-  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
 
   const { register } = useAuth();
 
@@ -136,4 +135,6 @@ export default function RegisterPage() {
       </Container>
     </Layout>
   );
-}
+};
+
+export default RegisterPage;
