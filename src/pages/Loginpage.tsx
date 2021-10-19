@@ -15,6 +15,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { useContext, useState } from 'react';
 import { useAuth } from '../context/auth/AuthContext';
 import AlertContext from '../context/alert/AlertContext';
+import { useHistory } from 'react-router';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -24,6 +25,8 @@ export default function LoginPage() {
   const alertContext = useContext(AlertContext);
   const { setAlert } = alertContext;
   const { login } = useAuth();
+
+  const history = useHistory();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -38,7 +41,7 @@ export default function LoginPage() {
     } else {
       setIsSubmitting(true);
       login(email, password)
-        .then((response) => console.log(response))
+        .then((response) => history.push('./profile'))
         .catch((error) => {
           console.log(error.message);
           setAlert(error.message, 'error');
