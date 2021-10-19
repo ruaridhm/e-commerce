@@ -6,8 +6,10 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Navlink from './navlink/Navlink';
+import { useAuth } from '../../context/auth/AuthContext';
 
 function Navbar() {
+  const { logout } = useAuth();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position='static'>
@@ -35,7 +37,7 @@ function Navbar() {
             onClick={async (e: { preventDefault: () => void }) => {
               e.preventDefault();
               // handle logout
-              alert('logout user');
+              logout();
             }}
           />
           {/* <IconButton
