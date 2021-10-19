@@ -1,4 +1,5 @@
-import * as React from 'react';
+import { useContext, useState } from 'react';
+//MUI
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -9,18 +10,26 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+//Components
 import Layout from '../components/Layout';
 import Copyright from '../components/copyright/Copyright';
+//Context
+import { useAuth } from '../context/auth/AuthContext';
+import AlertContext from '../context/alert/AlertContext';
 
-export default function ForgotPasswordPage() {
+const ForgotPasswordPage = () => {
+  const [email, setEmail] = useState('');
+  const { forgotPassword } = useAuth();
+  const alertContext = useContext(AlertContext);
+  const { setAlert } = alertContext;
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    forgotPassword(email)
+      .then(() => {
+        setAlert('Email sent!', 'success');
+      })
+      .catch((error) => setAlert(error.message, 'error'));
   };
 
   return (
@@ -56,6 +65,8 @@ export default function ForgotPasswordPage() {
               name='email'
               autoComplete='email'
               autoFocus
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <Button
               type='submit'
@@ -78,4 +89,6 @@ export default function ForgotPasswordPage() {
       </Container>
     </Layout>
   );
-}
+};
+
+export default ForgotPasswordPage;

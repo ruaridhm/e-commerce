@@ -1,7 +1,8 @@
 import { NavLink as Link, useLocation } from 'react-router-dom';
+//MUI
 import { Button } from '@mui/material';
 
-export default function Navlink({ to, name, ...rest }) {
+const Navlink = ({ to, name, ...rest }) => {
   const location = useLocation();
 
   const isActive = location.pathname === to;
@@ -9,7 +10,7 @@ export default function Navlink({ to, name, ...rest }) {
   return (
     <Link to={to}>
       <Button
-        component='a'
+        // component='a'
         variant={isActive ? 'outlined' : 'text'}
         color={isActive ? 'primary' : 'secondary'}
         {...rest}
@@ -18,4 +19,6 @@ export default function Navlink({ to, name, ...rest }) {
       </Button>
     </Link>
   );
-}
+};
+
+export default Navlink;

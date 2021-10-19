@@ -1,7 +1,7 @@
 import AppRouter from './components/appRouter/AppRouter';
 import AlertState from './context/alert/AlertState';
 import AuthContextProvider from './context/auth/AuthContext';
-function App() {
+const App = () => {
   return (
     <AuthContextProvider>
       <AlertState>
@@ -9,6 +9,6 @@ function App() {
       </AlertState>
     </AuthContextProvider>
   );
-}
+};
 
 export default App;

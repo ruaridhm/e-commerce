@@ -13,6 +13,6 @@ const initialState = {
   setAlert: () => {},
   alerts: [],
 };
-const alertContext = createContext<alertContextType>(initialState); //TODO A more robust type is possible
+const alertContext = createContext<alertContextType>(initialState);
 
 export default alertContext;

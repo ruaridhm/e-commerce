@@ -1,13 +1,17 @@
-import * as React from 'react';
+//MUI
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+//Components
 import Navlink from './navlink/Navlink';
+//Auth
+import { useAuth } from '../../context/auth/AuthContext';
 
-function Navbar() {
+const Navbar = () => {
+  const { logout, currentUser } = useAuth();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position='static'>
@@ -25,29 +29,24 @@ function Navbar() {
             Ecommerce
           </Typography>
           <Navlink to='/' name='Ecommerce' size='large' />
-          <Navlink to='/login' name='Login' />
-          <Navlink to='/register' name='Register' />
-          <Navlink to='/profile' name='Profile' />
-          <Navlink to='/protected-page' name='Protected' />
-          <Navlink
-            to='/logout'
-            name='Logout'
-            onClick={async (e: { preventDefault: () => void }) => {
-              e.preventDefault();
-              // handle logout
-              alert('logout user');
-            }}
-          />
-          {/* <IconButton
-          variant='outline'
-          icon={useColorModeValue(<FaSun />, <FaMoon />)}
-          onClick={toggleColorMode}
-          aria-label='toggle-dark-mode'
-        /> */}
+          {!currentUser && <Navlink to='/login' name='Login' />}
+          {!currentUser && <Navlink to='/register' name='Register' />}
+          {currentUser && <Navlink to='/profile' name='Profile' />}
+          {currentUser && <Navlink to='/protected-page' name='Protected' />}
+          {currentUser && (
+            <Navlink
+              to='/logout'
+              name='Logout'
+              onClick={async (e: { preventDefault: () => void }) => {
+                e.preventDefault();
+                logout();
+              }}
+            />
+          )}
         </Toolbar>
       </AppBar>
     </Box>
   );
-}
+};
 
 export default Navbar;

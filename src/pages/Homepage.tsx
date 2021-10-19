@@ -1,11 +1,12 @@
-import { Typography, List, ListItem } from '@mui/material';
-
-import Layout from '../components/Layout';
 import { Link } from 'react-router-dom';
-
+//MUI
+import { Typography, List, ListItem } from '@mui/material';
+//Components
+import Layout from '../components/Layout';
+//Context
 import { useAuth } from '../context/auth/AuthContext';
 
-export default function Homepage() {
+const Homepage = () => {
   const { currentUser } = useAuth();
   return (
     <Layout>
@@ -21,4 +22,5 @@ export default function Homepage() {
       </List>
     </Layout>
   );
-}
+};
+export default Homepage;
