@@ -9,7 +9,7 @@ import Navlink from './navlink/Navlink';
 import { useAuth } from '../../context/auth/AuthContext';
 
 function Navbar() {
-  const { logout } = useAuth();
+  const { logout, currentUser } = useAuth();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position='static'>
@@ -27,19 +27,21 @@ function Navbar() {
             Ecommerce
           </Typography>
           <Navlink to='/' name='Ecommerce' size='large' />
-          <Navlink to='/login' name='Login' />
-          <Navlink to='/register' name='Register' />
-          <Navlink to='/profile' name='Profile' />
-          <Navlink to='/protected-page' name='Protected' />
-          <Navlink
-            to='/logout'
-            name='Logout'
-            onClick={async (e: { preventDefault: () => void }) => {
-              e.preventDefault();
-              // handle logout
-              logout();
-            }}
-          />
+          {!currentUser && <Navlink to='/login' name='Login' />}
+          {!currentUser && <Navlink to='/register' name='Register' />}
+          {currentUser && <Navlink to='/profile' name='Profile' />}
+          {currentUser && <Navlink to='/protected-page' name='Protected' />}
+          {currentUser && (
+            <Navlink
+              to='/logout'
+              name='Logout'
+              onClick={async (e: { preventDefault: () => void }) => {
+                e.preventDefault();
+                // handle logout
+                logout();
+              }}
+            />
+          )}
           {/* <IconButton
           variant='outline'
           icon={useColorModeValue(<FaSun />, <FaMoon />)}
