@@ -16,6 +16,7 @@ import Profilepage from '../../pages/Profilepage';
 import ProtectedPage from '../../pages/ProtectedPage';
 import Registerpage from '../../pages/Registerpage';
 import ResetPasswordPage from '../../pages/ResetPasswordPage';
+import Cartpage from '../../pages/CartPage';
 
 const AppRouter = () => {
   return (
@@ -23,6 +24,7 @@ const AppRouter = () => {
       <Router>
         <Switch>
           <Route exact path='/' component={Homepage} />
+          <Route exact path='/cart' component={Cartpage} />
           <ProtectedRoute exact path='/login' component={Loginpage} />
           <ProtectedRoute exact path='/register' component={Registerpage} />
           <ProtectedRoute exact path='/profile' component={Profilepage} />

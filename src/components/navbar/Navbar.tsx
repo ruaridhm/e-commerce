@@ -9,6 +9,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Navlink from './navlink/Navlink';
 //Auth
 import { useAuth } from '../../context/auth/AuthContext';
+//Icons
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const Navbar = () => {
   const { logout, currentUser } = useAuth();
@@ -43,6 +45,7 @@ const Navbar = () => {
               }}
             />
           )}
+          <Navlink to='/cart' name={<ShoppingCartIcon />} />
         </Toolbar>
       </AppBar>
     </Box>

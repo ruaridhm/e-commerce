@@ -23,7 +23,7 @@ interface AuthContextInterface {
   resetPassword: any;
 }
 
-const AuthContext = createContext<AuthContextInterface>({
+const initialState = {
   currentUser: null,
   register: () => Promise,
   login: () => Promise,
@@ -31,7 +31,9 @@ const AuthContext = createContext<AuthContextInterface>({
   signInWithGoogle: () => Promise,
   forgotPassword: () => Promise,
   resetPassword: () => Promise,
-});
+};
+
+const AuthContext = createContext<AuthContextInterface>(initialState);
 
 interface useAuthInterface {
   currentUser: null | User;

@@ -1,18 +1,18 @@
 import { createContext } from 'react';
 
-type alertContextType = {
+interface alertContextInterface {
   setAlert: (
     msg: string,
     type: 'error' | 'warning' | 'info' | 'success',
     timeout?: number
   ) => void;
-  alerts: any[];
-};
+  alerts: any[]; //TODO better defined type here
+}
 
 const initialState = {
   setAlert: () => {},
   alerts: [],
 };
-const alertContext = createContext<alertContextType>(initialState);
+const alertContext = createContext<alertContextInterface>(initialState);
 
 export default alertContext;
