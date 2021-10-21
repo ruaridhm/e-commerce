@@ -6,17 +6,17 @@ export const cartReducer = (state: ICartState, action: ICartActions) => {
 
   switch (action.type) {
     case 'add_item':
-      if (items[item.name]) {
-        items[item.name].push(item);
+      if (items[item.id]) {
+        items[item.id].push(item);
       } else {
-        items[item.name] = [item];
+        items[item.id] = [item];
       }
 
       return { ...state, items };
     case 'remove_item':
-      items[item.name].pop();
+      items[item.id].pop();
 
-      if (items[item.name].length === 0) delete items[item.name];
+      if (items[item.id].length === 0) delete items[item.id];
 
       return { ...state, items };
     default:

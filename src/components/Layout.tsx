@@ -1,24 +1,23 @@
 //Mui
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Container from '@mui/material/Container';
 //Components
 import Navbar from './navbar/Navbar';
 import Alerts from './alerts/Alerts';
 import { CssBaseline } from '@mui/material';
 
-interface LayoutInterface {
+interface ILayout {
   children: any;
 }
 
 const theme = createTheme();
 
-const Layout = ({ children }: LayoutInterface) => {
+const Layout = ({ children }: ILayout) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Navbar />
       <Alerts />
-      <Container component='main'>{children}</Container>
+      <main>{children}</main>
     </ThemeProvider>
   );
 };

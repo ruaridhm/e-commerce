@@ -13,7 +13,7 @@ import {
   signInWithPopup,
 } from '@firebase/auth';
 
-interface AuthContextInterface {
+interface IAuthContext {
   currentUser: null | User;
   register: any; //TODO (email: string, password: string) => Promise<UserCredential>;
   login: any;
@@ -33,9 +33,9 @@ const initialState = {
   resetPassword: () => Promise,
 };
 
-const AuthContext = createContext<AuthContextInterface>(initialState);
+const AuthContext = createContext<IAuthContext>(initialState);
 
-interface useAuthInterface {
+interface IuseAuth {
   currentUser: null | User;
   register: (email: string, password: string) => Promise<UserCredential>;
   login: (email: string, password: string) => Promise<UserCredential>;
@@ -45,13 +45,13 @@ interface useAuthInterface {
   resetPassword: (oobCode: string, newPassword: string) => Promise<void>;
 }
 
-export const useAuth = (): useAuthInterface => useContext(AuthContext);
+export const useAuth = (): IuseAuth => useContext(AuthContext);
 
-interface AuthContextProviderInterface {
+interface IAuthContextProvider {
   children: any;
 }
 
-const AuthContextProvider = ({ children }: AuthContextProviderInterface) => {
+const AuthContextProvider = ({ children }: IAuthContextProvider) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   //sets currentUSer so application knows if there is a current user or not.

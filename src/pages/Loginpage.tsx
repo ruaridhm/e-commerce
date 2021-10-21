@@ -3,7 +3,6 @@ import { useLocation } from 'react-router';
 import { useHistory } from 'react-router-dom';
 //MUI
 import Avatar from '@mui/material/Avatar';
-
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -25,7 +24,7 @@ import AlertContext from '../context/alert/AlertContext';
 //Hooks
 import useMounted from '../hooks/useMounted/useMounted';
 
-export interface LocationStateInterface {
+export interface ILocationState {
   from: {
     pathname: string;
   };
@@ -39,7 +38,7 @@ const LoginPage = () => {
   const { setAlert } = alertContext;
   const { login, signInWithGoogle } = useAuth();
 
-  const location = useLocation<LocationStateInterface>();
+  const location = useLocation<ILocationState>();
 
   //ref used to check if current component is still mounted for setIsSubmitting(false) in onSubmit fn call to avoid setting state on an unmounted component
   const mounted = useMounted();

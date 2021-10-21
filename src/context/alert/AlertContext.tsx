@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-interface alertContextInterface {
+interface IalertContext {
   setAlert: (
     msg: string,
     type: 'error' | 'warning' | 'info' | 'success',
@@ -13,6 +13,6 @@ const initialState = {
   setAlert: () => {},
   alerts: [],
 };
-const alertContext = createContext<alertContextInterface>(initialState);
+const alertContext = createContext<IalertContext>(initialState);
 
 export default alertContext;

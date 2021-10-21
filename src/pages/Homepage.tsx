@@ -5,12 +5,14 @@ import { Typography, List, ListItem } from '@mui/material';
 import Layout from '../components/Layout';
 //Context
 import { useAuth } from '../context/auth/AuthContext';
+import ShopPage from './shopPage';
 
 const Homepage = () => {
   const { currentUser } = useAuth();
   return (
     <Layout>
-      <Typography>Ecommerce</Typography>
+      <ShopPage />
+      {/* <Typography>Ecommerce</Typography>
       <Typography>{`The current user is : ${currentUser}`}</Typography>
       <List>
         <ListItem>
@@ -19,7 +21,7 @@ const Homepage = () => {
         <ListItem>
           <Link to='/forgot-password'>forgot page</Link>
         </ListItem>
-      </List>
+      </List> */}
     </Layout>
   );
 };

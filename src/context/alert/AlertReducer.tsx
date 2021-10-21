@@ -10,13 +10,13 @@ type Actions =
       payload: string;
     };
 
-interface Alert {
+interface IAlert {
   msg: string;
   type: string;
   id: string;
 }
 
-type State = Alert[];
+type State = IAlert[];
 
 const AlertReducer = (state: State, action: Actions) => {
   switch (action.type) {
