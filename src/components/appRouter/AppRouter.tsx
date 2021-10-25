@@ -16,10 +16,14 @@ import Profilepage from '../../pages/Profilepage';
 import ProtectedPage from '../../pages/ProtectedPage';
 import Registerpage from '../../pages/Registerpage';
 import ResetPasswordPage from '../../pages/ResetPasswordPage';
-import Cartpage from '../../pages/CartPage';
+import CartPage from '../../pages/CartPage';
 import CheckoutPage from '../../pages/CheckoutPage';
 import PaymentSuccess from '../../pages/PaymentSuccess';
 import FaqPage from '../../pages/FaqPage';
+import ShopPage from '../../pages/ShopPage';
+import AboutPage from '../../pages/AboutPage';
+import ContactPage from '../../pages/ContactPage';
+import TermsConditionsPage from '../../pages/TermsConditionsPage';
 
 const AppRouter = () => {
   return (
@@ -27,14 +31,19 @@ const AppRouter = () => {
       <Router>
         <Switch>
           <Route exact path='/' component={Homepage} />
-          <Route exact path='/cart' component={Cartpage} />
+          <Route exact path='/cart' component={CartPage} />
           <Route exact path='/checkout' component={CheckoutPage} />
           <Route exact path='/paymentSuccessful' component={PaymentSuccess} />
+          <Route exact path='/create-checkout-session' />
+          <Route exact path='/faq' component={FaqPage} />
+          <Route exact path='/shop' component={ShopPage} />
+          <Route exact path='/about' component={AboutPage} />
+          <Route exact path='/contact' component={ContactPage} />
+          <Route exact path='/terms' component={TermsConditionsPage} />
+          <Route exact path='*' component={NotfoundPage} />
           <ProtectedRoute exact path='/login' component={Loginpage} />
           <ProtectedRoute exact path='/register' component={Registerpage} />
           <ProtectedRoute exact path='/profile' component={Profilepage} />
-          <Route exact path='/create-checkout-session' />
-          <Route exact path='/faq' component={FaqPage} />
           <ProtectedRoute
             exact
             path='/protected-page'
@@ -50,7 +59,6 @@ const AppRouter = () => {
             path='/reset-password'
             component={ResetPasswordPage}
           />
-          <Route exact path='*' component={NotfoundPage} />
         </Switch>
       </Router>
     </>

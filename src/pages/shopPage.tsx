@@ -1,10 +1,11 @@
 import { Box, Typography } from '@mui/material';
 import ItemCard from '../components/itemCard/ItemCard';
+import Layout from '../components/Layout';
 import { dummyItems } from '../dummyItems';
 
 const ShopPage = () => {
   return (
-    <>
+    <Layout>
       <Typography variant='h2'>Shop</Typography>
       <Box
         sx={{
@@ -19,7 +20,7 @@ const ShopPage = () => {
           return <ItemCard {...product} key={product.id} />;
         })}
       </Box>
-    </>
+    </Layout>
   );
 };
 

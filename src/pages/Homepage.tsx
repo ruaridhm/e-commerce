@@ -1,18 +1,16 @@
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 //MUI
-// import { Typography, List, ListItem } from '@mui/material';
+import { Typography, List, ListItem } from '@mui/material';
 //Components
 import Layout from '../components/Layout';
 //Context
-// import { useAuth } from '../context/auth/AuthContext';
-import ShopPage from './ShopPage';
+import { useAuth } from '../context/auth/AuthContext';
 
 const Homepage = () => {
-  // const { currentUser } = useAuth();
+  const { currentUser } = useAuth();
   return (
     <Layout>
-      <ShopPage />
-      {/* <Typography>Ecommerce</Typography>
+      <Typography>Ecommerce</Typography>
       <Typography>{`The current user is : ${currentUser}`}</Typography>
       <List>
         <ListItem>
@@ -21,7 +19,7 @@ const Homepage = () => {
         <ListItem>
           <Link to='/forgot-password'>forgot page</Link>
         </ListItem>
-      </List> */}
+      </List>
     </Layout>
   );
 };
