@@ -1,14 +1,14 @@
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 //MUI
-import { Typography, List, ListItem } from '@mui/material';
+// import { Typography, List, ListItem } from '@mui/material';
 //Components
 import Layout from '../components/Layout';
 //Context
-import { useAuth } from '../context/auth/AuthContext';
-import ShopPage from './shopPage';
+// import { useAuth } from '../context/auth/AuthContext';
+import ShopPage from './ShopPage';
 
 const Homepage = () => {
-  const { currentUser } = useAuth();
+  // const { currentUser } = useAuth();
   return (
     <Layout>
       <ShopPage />

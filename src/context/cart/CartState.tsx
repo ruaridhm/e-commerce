@@ -1,19 +1,47 @@
-import { useReducer } from 'react';
-import { CartContextProvider, initialCartState } from './CartContext';
-import { cartReducer } from './CartReducer';
+import { useReducer, FC } from 'react';
+import CartContext from './CartContext';
+import CartReducer from './CartReducer';
+import { IProduct } from './CartContext';
+import {
+  ADD_PRODUCT,
+  CLEAR_CART,
+  REMOVE_PRODUCT,
+  INCREASE,
+  DECREASE,
+} from './types';
 
-const CartState = ({ children }: any) => {
-  const [cartState, cartDispatch] = useReducer(cartReducer, initialCartState);
-
-  const cartContextValues = {
-    cartState,
-    cartDispatch,
+const CartState: FC = ({ children }) => {
+  const initialState = {
+    cartItems: [],
+    //....
   };
 
+  const [state, dispatch] = useReducer(CartReducer, initialState);
+  const addProduct = (product: IProduct) =>
+    dispatch({ type: ADD_PRODUCT, payload: product });
+  const increase = (product: IProduct) =>
+    dispatch({ type: INCREASE, payload: product });
+  const decrease = (product: IProduct) =>
+    dispatch({ type: DECREASE, payload: product });
+  const removeProduct = (product: IProduct) =>
+    dispatch({ type: REMOVE_PRODUCT, payload: product });
+  const clearCart = () => dispatch({ type: CLEAR_CART });
+
   return (
-    <CartContextProvider value={cartContextValues}>
+    <CartContext.Provider
+      value={{
+        cartItems: state.cartItems,
+        itemCount: state.itemCount,
+        total: state.total,
+        addProduct,
+        increase,
+        decrease,
+        removeProduct,
+        clearCart,
+      }}
+    >
       {children}
-    </CartContextProvider>
+    </CartContext.Provider>
   );
 };
 

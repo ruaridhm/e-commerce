@@ -18,6 +18,7 @@ import Registerpage from '../../pages/Registerpage';
 import ResetPasswordPage from '../../pages/ResetPasswordPage';
 import Cartpage from '../../pages/CartPage';
 import CheckoutPage from '../../pages/CheckoutPage';
+import PaymentSuccess from '../../pages/PaymentSuccess';
 
 const AppRouter = () => {
   return (
@@ -27,9 +28,11 @@ const AppRouter = () => {
           <Route exact path='/' component={Homepage} />
           <Route exact path='/cart' component={Cartpage} />
           <Route exact path='/checkout' component={CheckoutPage} />
+          <Route exact path='/paymentSuccessful' component={PaymentSuccess} />
           <ProtectedRoute exact path='/login' component={Loginpage} />
           <ProtectedRoute exact path='/register' component={Registerpage} />
           <ProtectedRoute exact path='/profile' component={Profilepage} />
+          <Route exact path='/create-checkout-session' />
           <ProtectedRoute
             exact
             path='/protected-page'

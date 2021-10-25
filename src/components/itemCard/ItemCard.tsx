@@ -4,17 +4,20 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
-import CartContext, { IItem } from '../../context/cart/CartContext';
 import { useContext } from 'react';
+import CartContext, { IProduct } from '../../context/cart/CartContext';
 
-interface IItemCardProps {
-  item: IItem;
-}
+const ItemCard: React.FunctionComponent<IProduct> = (props) => {
+  const { title, price, description, image } = props;
 
-const ItemCard: React.FunctionComponent<IItemCardProps> = (props) => {
-  const { title, price, description, category, image, rating } = props.item;
+  const { addProduct, cartItems, increase } = useContext(CartContext);
 
-  const cartContext = useContext(CartContext);
+  const isInCart = (product: IProduct, cartItems: IProduct[] | []) => {
+    return cartItems.find((item) => item.id === product.id);
+  };
+
+  const itemInCart = isInCart(props, cartItems);
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
@@ -32,15 +35,19 @@ const ItemCard: React.FunctionComponent<IItemCardProps> = (props) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button
-          size='small'
-          color='primary'
-          onClick={() =>
-            cartContext.cartDispatch({ type: 'add_item', payload: props.item })
-          }
-        >
-          Add to cart
-        </Button>
+        {!itemInCart ? (
+          <Button
+            size='small'
+            color='primary'
+            onClick={() => addProduct(props)}
+          >
+            Add to cart
+          </Button>
+        ) : (
+          <Button size='small' color='primary' onClick={() => increase(props)}>
+            ADD MORE
+          </Button>
+        )}
       </CardActions>
     </Card>
   );

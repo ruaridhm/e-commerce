@@ -15,8 +15,8 @@ const ShopPage = () => {
           width: '90vw',
         }}
       >
-        {dummyItems.map((item) => {
-          return <ItemCard item={item} key={item.id} />;
+        {dummyItems.map((product) => {
+          return <ItemCard {...product} key={product.id} />;
         })}
       </Box>
     </>

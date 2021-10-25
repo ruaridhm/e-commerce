@@ -1,49 +1,47 @@
 import {
   Button,
   Card,
-  CardActionArea,
   CardActions,
   CardContent,
   Typography,
 } from '@mui/material';
-import React, { useContext } from 'react';
-import CartContext, { IItem } from '../../context/cart/CartContext';
+import { IProduct } from '../../context/cart/CartContext';
 
-export interface ICartItemComponentProps {
-  item: IItem;
-  quantity: number;
+export interface ICartItemComponentProps extends IProduct {
+  increase: any;
+  decrease: any;
+  removeProduct: any;
 }
 
-const CartItemComponent: React.FunctionComponent<ICartItemComponentProps> = (
-  props
-) => {
-  const { title, price, image } = props.item;
-  const { quantity } = props;
-  const cartContext = useContext(CartContext);
-
+const CartItemComponent = (props: ICartItemComponentProps) => {
+  const {
+    title,
+    image,
+    price,
+    quantity,
+    id,
+    description,
+    increase,
+    decrease,
+    removeProduct,
+  } = props;
+  const product = { title, image, price, quantity, id, description };
   return (
     <Card>
       <CardContent>
         <Typography variant='h5'>
           {title} X {quantity}
         </Typography>
-        <Typography>${price * quantity}</Typography>
+        <Typography>${price * quantity!}</Typography>
       </CardContent>
-      <CardActionArea>
-        <CardActions>
-          <Button
-            color='primary'
-            onClick={() =>
-              cartContext.cartDispatch({
-                type: 'remove_item',
-                payload: props.item,
-              })
-            }
-          >
-            Remove one from cart
-          </Button>
-        </CardActions>
-      </CardActionArea>
+
+      <CardActions>
+        <Button onClick={() => increase(product)}>Increase</Button>
+        <Button color='primary' onClick={() => removeProduct(product)}>
+          Remove one from cart
+        </Button>
+        <Button onClick={() => decrease(product)}>Decrease</Button>
+      </CardActions>
     </Card>
   );
 };
