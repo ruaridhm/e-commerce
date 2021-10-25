@@ -19,6 +19,7 @@ import ResetPasswordPage from '../../pages/ResetPasswordPage';
 import Cartpage from '../../pages/CartPage';
 import CheckoutPage from '../../pages/CheckoutPage';
 import PaymentSuccess from '../../pages/PaymentSuccess';
+import FaqPage from '../../pages/FaqPage';
 
 const AppRouter = () => {
   return (
@@ -33,6 +34,7 @@ const AppRouter = () => {
           <ProtectedRoute exact path='/register' component={Registerpage} />
           <ProtectedRoute exact path='/profile' component={Profilepage} />
           <Route exact path='/create-checkout-session' />
+          <Route exact path='/faq' component={FaqPage} />
           <ProtectedRoute
             exact
             path='/protected-page'
