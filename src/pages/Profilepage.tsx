@@ -5,7 +5,7 @@ import Layout from '../components/Layout';
 //Context
 import { useAuth } from '../context/auth/AuthContext';
 
-const Profilepage = () => {
+const ProfilePage = () => {
   const { currentUser } = useAuth();
 
   return (
@@ -18,4 +18,4 @@ const Profilepage = () => {
   );
 };
 
-export default Profilepage;
+export default ProfilePage;

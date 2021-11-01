@@ -1,4 +1,4 @@
-import AppRouter from './components/appRouter/AppRouter';
+import AppRouter from './components/AppRouter/AppRouter';
 import AlertState from './context/alert/AlertState';
 import AuthContextProvider from './context/auth/AuthContext';
 import CartState from './context/cart/CartState';

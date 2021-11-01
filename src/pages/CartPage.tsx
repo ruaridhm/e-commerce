@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import { useContext, useEffect, useState } from 'react';
-import CartItem from '../components/cartItem/CartItem';
+import CartItem from '../components/CartItem/CartItem';
 import Layout from '../components/Layout';
 import CartContext from '../context/cart/CartContext';
 

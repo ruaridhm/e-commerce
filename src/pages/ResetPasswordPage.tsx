@@ -11,7 +11,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 //Components
 import Layout from '../components/Layout';
-import Copyright from '../components/copyright/Copyright';
+import Copyright from '../components/Copyright/Copyright';
 //Context
 import { useAuth } from '../context/auth/AuthContext';
 import AlertContext from '../context/alert/AlertContext';

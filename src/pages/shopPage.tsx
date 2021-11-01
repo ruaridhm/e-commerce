@@ -1,12 +1,11 @@
 import { Box, Typography } from '@mui/material';
-import ItemCard from '../components/itemCard/ItemCard';
+import ItemCard from '../components/ItemCard/ItemCard';
 import Layout from '../components/Layout';
 import { dummyItems } from '../dummyItems';
 
 const ShopPage = () => {
   return (
     <Layout>
-      <Typography variant='h2'>Shop</Typography>
       <Box
         sx={{
           display: 'flex',
@@ -14,6 +13,7 @@ const ShopPage = () => {
           flexWrap: 'wrap',
           alignItems: 'space-around',
           width: '90vw',
+          pt: 1,
         }}
       >
         {dummyItems.map((product) => {

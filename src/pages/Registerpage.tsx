@@ -13,7 +13,7 @@ import Container from '@mui/material/Container';
 import { LoadingButton } from '@mui/lab';
 //Components
 import Layout from '../components/Layout';
-import Copyright from '../components/copyright/Copyright';
+import Copyright from '../components/Copyright/Copyright';
 //Context
 import AlertContext from '../context/alert/AlertContext';
 import { useAuth } from '../context/auth/AuthContext';

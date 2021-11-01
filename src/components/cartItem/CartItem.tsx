@@ -3,8 +3,12 @@ import {
   Card,
   CardActions,
   CardContent,
+  IconButton,
   Typography,
 } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+
 import { IProduct } from '../../context/cart/CartContext';
 
 export interface ICartItemComponentProps extends IProduct {
@@ -36,11 +40,15 @@ const CartItemComponent = (props: ICartItemComponentProps) => {
       </CardContent>
 
       <CardActions>
-        <Button onClick={() => increase(product)}>Increase</Button>
+        <IconButton onClick={() => increase(product)}>
+          <AddIcon />
+        </IconButton>
         <Button color='primary' onClick={() => removeProduct(product)}>
-          Remove one from cart
+          Remove from cart
         </Button>
-        <Button onClick={() => decrease(product)}>Decrease</Button>
+        <IconButton onClick={() => decrease(product)}>
+          <RemoveIcon />
+        </IconButton>
       </CardActions>
     </Card>
   );

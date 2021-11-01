@@ -1,10 +1,11 @@
 //Mui
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 //Components
-import Navbar from './navbar/Navbar';
-import Alerts from './alerts/Alerts';
+import Navbar from './Navbar/Navbar';
+import Alerts from './Alerts/Alerts';
 import { CssBaseline } from '@mui/material';
-import AnnouncementBar from './announcementBar/AnnouncementBar';
+import AnnouncementBar from './AnnouncementBar/AnnouncementBar';
+import Footer from './Footer/Footer';
 
 interface ILayout {
   children: any;
@@ -20,6 +21,7 @@ const Layout = ({ children }: ILayout) => {
       <Navbar />
       <Alerts />
       <main>{children}</main>
+      <Footer />
     </ThemeProvider>
   );
 };

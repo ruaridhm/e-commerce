@@ -9,10 +9,10 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 //Components
-import AddressForm from '../components/addressForm.tsx/AddressForm';
-import PaymentForm from '../components/paymentForm/PaymentForm';
-import Review from '../components/paymentReview/PaymentReview';
-import Copyright from '../components/copyright/Copyright';
+import AddressForm from '../components/AddressForm.tsx/AddressForm';
+import PaymentForm from '../components/PaymentForm/PaymentForm';
+import Review from '../components/PaymentReview/PaymentReview';
+import Copyright from '../components/Copyright/Copyright';
 import Layout from '../components/Layout';
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];

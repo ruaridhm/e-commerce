@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 //Components
 import Layout from '../components/Layout';
-import Copyright from '../components/copyright/Copyright';
+import Copyright from '../components/Copyright/Copyright';
 //Context
 import { useAuth } from '../context/auth/AuthContext';
 import AlertContext from '../context/alert/AlertContext';

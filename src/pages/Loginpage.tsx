@@ -15,7 +15,7 @@ import Container from '@mui/material/Container';
 import LoadingButton from '@mui/lab/LoadingButton';
 //Components
 import Layout from '../components/Layout';
-import Copyright from '../components/copyright/Copyright';
+import Copyright from '../components/Copyright/Copyright';
 //Outside Components
 import GoogleButton from 'react-google-button';
 //Context
