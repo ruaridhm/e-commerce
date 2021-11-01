@@ -33,10 +33,15 @@ const CarouselCard = ({
         cursor: 'grab',
       }}
     >
-      <Container sx={{ pt: 40 }}>
+      <Container sx={{ pt: '50vh' }}>
         <Typography variant='h2'>{text}</Typography>
         <Typography variant='body1'>{subText}</Typography>
-        <Button variant='contained' sx={{ mt: 1 }} onClick={handleClick}>
+        <Button
+          variant='contained'
+          size='large'
+          sx={{ mt: 1 }}
+          onClick={handleClick}
+        >
           {buttonText}
         </Button>
       </Container>

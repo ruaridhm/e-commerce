@@ -12,6 +12,8 @@ const ImageGridItem = ({ image }: IImageGridItemProps) => {
       <Box
         sx={{
           backgroundImage: `url(${image})`,
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
           height: '100%',
           width: '100%',
         }}
@@ -48,9 +50,16 @@ const DetailGridItem = ({
         justifyContent: 'center',
       }}
     >
-      <Typography variant='h3'>{text}</Typography>
+      <Typography variant='h2' component='h3'>
+        {text}
+      </Typography>
       <Typography variant='body1'>{subText}</Typography>
-      <Button variant='contained' sx={{ mt: 1 }} onClick={handleClick}>
+      <Button
+        variant='contained'
+        size='large'
+        sx={{ mt: 1 }}
+        onClick={handleClick}
+      >
         {buttonText}
       </Button>
     </Grid>
